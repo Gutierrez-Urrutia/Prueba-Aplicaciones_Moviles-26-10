@@ -10,6 +10,7 @@ import { Pelicula } from 'src/app/interfaces/pelicula';
 export class PeliculasPage implements OnInit {
 
   peliculas: Pelicula[]=[];
+  path: string = 'https://image.tmdb.org/t/p//w500//';
   constructor(private readonly service: PeliculasApiService) {}
 
   ngOnInit() {
