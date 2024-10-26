@@ -13,5 +13,5 @@ export class PeliculasApiService {
 
   obtenerPeliculas(): Observable<Pelicula[]>{
     return this.http.get<Pelicula[]>(this.apiUrl);
-  } //Agregar Observable
+  } 
 }
