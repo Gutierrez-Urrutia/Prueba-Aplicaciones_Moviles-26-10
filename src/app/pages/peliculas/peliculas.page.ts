@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PeliculasApiService } from 'src/app/services/peliculas-api.service';
+import { Pelicula } from 'src/app/interfaces/pelicula';
 
 @Component({
   selector: 'app-peliculas',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PeliculasPage implements OnInit {
 
-  constructor() { }
+  peliculas: Pelicula[]=[];
+  constructor(private readonly service: PeliculasApiService) {}
 
   ngOnInit() {
+
+    const peliculas = localStorage.getItem('peliculas');
+    if(peliculas){
+      this.peliculas = JSON.parse('peliculas');
+    } else {
+      this.service.obtenerPeliculas().subscribe((data)=>{
+        this.peliculas = data;
+        localStorage.setItem('peliculas', JSON.stringify(data));
+      });
+    }
+    
   }
 
 }
