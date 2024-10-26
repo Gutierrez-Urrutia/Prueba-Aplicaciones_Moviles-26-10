@@ -16,14 +16,12 @@ export class PeliculasPage implements OnInit {
 
     const peliculas = localStorage.getItem('peliculas');
     if(peliculas){
-      this.peliculas = JSON.parse('peliculas');
+      this.peliculas=JSON.parse(peliculas);
     } else {
-      this.service.obtenerPeliculas().subscribe((data)=>{
+      this.service.obtenerPeliculas().subscribe((data: Pelicula[]) => {
         this.peliculas = data;
         localStorage.setItem('peliculas', JSON.stringify(data));
-      });
+      })
     }
-    
   }
-
 }
